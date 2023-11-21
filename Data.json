@@ -1,0 +1,43 @@
+[
+    {
+        "idPet": 1155,
+        "idCategory":0,
+        "nameCategory":"Cats",      
+        "namePet": "chat",
+        "idTag1":1,
+        "nameTag1":"Gato negro",
+        "idTag2":2,
+        "nameTag2":"Gato gris",
+        "idTag3":3,
+        "nameTag3":"blanco",
+        "status": "available"
+      },
+      {
+        "idPet": 1156,
+        "idCategory":1,
+        "nameCategory":"Dogs",      
+        "namePet": "Doggy",
+        "idTag1":1,
+        "nameTag1":"perro negro",
+        "idTag2":2,
+        "nameTag2":"perro gris",
+        "idTag3":3,
+        "nameTag3":"blanco",
+        "status": "available"
+
+      },
+      {
+        "idPet": 1157,
+        "idCategory":2,
+        "nameCategory":"Rabbit",      
+        "namePet": "Cone",
+        "idTag1":1,
+        "nameTag1":"conejo negro",
+        "idTag2":2,
+        "nameTag2":"conejo gris",
+        "idTag3":3,
+        "nameTag3":"blanco",
+        "status": "available"
+
+      }
+]

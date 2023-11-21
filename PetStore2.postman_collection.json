@@ -1,0 +1,151 @@
+{
+	"info": {
+		"_postman_id": "1c251b41-e63c-4bda-bb58-e15c8d153013",
+		"name": "PetStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30268397",
+		"_collection_link": "https://www.postman.com/cloudy-flare-828405/workspace/cursocampus/collection/30268397-1c251b41-e63c-4bda-bb58-e15c8d153013?action=share&source=collection_link&creator=30268397"
+	},
+	"item": [
+		{
+			"name": "CreatePet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Body matches available\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"available\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Tag int body? \", ()=>{\r",
+							"    var jsonData= pm.response.json();\r",
+							"    var tag= jsonData.tags.find(e=>e.name==\"blanco\");\r",
+							"    pm.expect(tag).not.to.be.undefined;\r",
+							"    pm.expect(tag.name).to.include(\"blanco\");\r",
+							"\r",
+							"})\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var x = pm.variables.get(\"idPet\");\r",
+							"\r",
+							"pm.globals.set(\"idMascota\", x);\r",
+							"pm.environment.set(\"idMascota\", x);\r",
+							"var y = pm.variables.get(\"idMascota\");\r",
+							"console.log(\"idmascota\")\r",
+							"console.log(y)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": {{idPet}},\r\n  \"category\":{\r\n        \"id\": 1,\r\n        \"name\": \"{{nameCategory}}\"\r\n      },\r\n  \"name\": \"{{namePet}}\",\r\n  \"photoUrls\": [\r\n    \"www.fotos.fz\",\r\n    \"www.photos.zf\"\r\n  ],\r\n  \"tags\": [\r\n      {\r\n        \"id\": 1,\r\n        \"name\": \"{{nameTag1}}\"\r\n      },\r\n      {\r\n        \"id\": 2,\r\n        \"name\": \"{{nameTag2}}\"\r\n    },\r\n    {\r\n        \"id\": 3,\r\n        \"name\": \"{{nameTag3}}\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseUrl}}/pet",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPetId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://petstore.swagger.io/v2/pet/1220",
+					"protocol": "https",
+					"host": [
+						"petstore",
+						"swagger",
+						"io"
+					],
+					"path": [
+						"v2",
+						"pet",
+						"1220"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletedPet",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"message is \", ()=>{\r",
+							"    var jsonData= pm.response.json();\r",
+							"    var message=pm.variables.get(\"PetId\");\r",
+							"\r",
+							"    pm.expect(jsonData.message).to.equal(message)\r",
+							"\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BaseUrl}}/pet/{{PetId}}",
+					"host": [
+						"{{BaseUrl}}"
+					],
+					"path": [
+						"pet",
+						"{{PetId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
